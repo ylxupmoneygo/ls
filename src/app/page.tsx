@@ -1,101 +1,96 @@
-import Image from "next/image";
+// src/app/page.tsx
+import Navbar from '@/components/layout/Navbar';
+import Carousel from '@/components/ui/Carousel';
+import ProductCard from '@/components/ui/ProductCard';
+import Footer from '@/components/layout/Footer';
+const featuredProducts = [
+  {
+    title: "Safety Face Shield",
+    image: "/products/product1.png",
+    description: "High-quality face shield made with premium materials, providing comprehensive protection for various work environments"
+  },
+  {
+    title: "Protective Gloves",
+    image: "/products/product2.png",
+    description: "Professional safety gloves with cut-resistant, puncture-proof, and chemical-resistant properties"
+  },
+  {
+    title: "Safety Helmet",
+    image: "/products/product3.png",
+    description: "High-strength safety helmet meeting international safety standards for reliable head protection"
+  }
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="min-h-screen">
+      <Navbar />
+      <Carousel />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      {/* Products Section */}
+      <section className="max-w-7xl mx-auto py-16 px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">
+          <span className="text-blue-600">Featured</span> Products
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {featuredProducts.map((product, index) => (
+            <ProductCard
+              key={index}
+              title={product.title}
+              image={product.image}
+              description={product.description}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* About Us Section */}
+      <section className="bg-gradient-to-b from-white to-blue-50/30 py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-16">
+            <span className="text-blue-600">About</span> Us
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            {/* Left Image */}
+            <div className="relative h-[500px] group">
+              <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl transform transition-transform duration-300 group-hover:scale-[1.02]">
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent z-10" />
+                <img
+                  src="/company.jpg"
+                  alt="Company Profile"
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="space-y-8">
+              <h3 className="text-2xl font-semibold text-gray-800 border-l-4 border-blue-600 pl-4">
+                Professional Safety Protection Solutions
+              </h3>
+              <div className="space-y-6 text-gray-600">
+                <p className="leading-relaxed">
+                  Qingdao GatherWell Co., Ltd. is a company that focuses on providing customers with safety protection solutions from head to toe.
+                </p>
+                <p className="leading-relaxed">
+                  Our main products include: a variety of limited-use protective clothing, chemical protective clothing, flame-retardant work clothes, clean room clothing, safety gloves, safety shoes, reflective vests, work clothes, etc.
+                </p>
+                <p className="leading-relaxed">
+                  GatherWell provides customers with high-quality products by insisting on continuous product research and development and technological innovation. The products comply with GB standards, CE European standards, etc., to provide users with the best protection.
+                </p>
+                <p className="leading-relaxed">
+                  Over the years, GatherWell's products have been exported to more than 30 countries and regions including Europe, Japan, South Korea, Singapore, Thailand, the United States, Canada, and South America, etc. It is deeply loved by users.
+                </p>
+                <p className="leading-relaxed">
+                  In the future, we will continue to provide users with better safety protection with our products with excellent quality, professional team, and meticulous service.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
   );
 }
